@@ -6,5 +6,5 @@ import com.g3c1.temiuser.domain.category.presentaion.data.request.CreateCategory
 
 interface CategoryConverter {
     fun toDto(createCategoryRequest: CreateCategoryRequest): CategoryDto
-    fun toEntity(dto: CreateCategoryRequest): List<Category>
+    fun toEntity(dto: CategoryDto): List<Category>
 }

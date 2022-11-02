@@ -1,7 +1,7 @@
 package com.g3c1.temiuser.domain.category.service
 
-import com.g3c1.temiuser.domain.category.presentaion.data.request.CreateCategoryRequest
+import com.g3c1.temiuser.domain.category.presentaion.data.dto.CategoryDto
 
 interface CategoryService {
-    fun createCategory(createCategoryDto: CreateCategoryRequest)
+    fun createCategory(createCategoryDto: CategoryDto)
 }
