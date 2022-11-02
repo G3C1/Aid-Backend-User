@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.jpa") version "1.6.21"
 }
 
 group = "com.g3c1"
@@ -23,12 +24,12 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
-	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
