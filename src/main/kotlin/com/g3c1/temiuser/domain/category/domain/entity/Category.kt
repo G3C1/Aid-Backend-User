@@ -1,4 +1,4 @@
-package com.g3c1.temiuser.domain.category.entity
+package com.g3c1.temiuser.domain.category.domain.entity
 
 import com.g3c1.temiuser.global.entity.BaseIdEntity
 import javax.persistence.*
