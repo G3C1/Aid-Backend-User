@@ -4,9 +4,8 @@ import com.g3c1.temiuser.domain.seat.presentation.data.response.SeatInfoResponse
 import com.g3c1.temiuser.domain.seat.service.SeatService
 import com.g3c1.temiuser.domain.seat.utils.SeatConverter
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("api/v1/seat")
@@ -19,4 +18,10 @@ class SeatController(
         seatService.findAllSeatInfo()
             .let { seatConverter.toResponse(it) }
             .let { ResponseEntity.ok().body(it) }
+
+    @PatchMapping("{seatId}")
+    fun patchUsingSeat(@Valid @PathVariable seatId: Long){}
+
+    @PatchMapping
+    fun patchDisableUsingSeat(){}
 }

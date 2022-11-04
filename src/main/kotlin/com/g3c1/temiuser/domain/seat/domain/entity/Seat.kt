@@ -11,5 +11,5 @@ class Seat (
     @Column(nullable = false)
     val severalPeople: Long,
     @Column(nullable = false)
-    val enabled: Boolean,
+    var enabled: Boolean,
 ):BaseIdEntity()
