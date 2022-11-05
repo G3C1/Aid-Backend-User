@@ -21,11 +21,14 @@ class SeatController(
             .let { ResponseEntity.ok().body(it) }
 
     @PatchMapping("{seatId}")
-    fun patchUsingSeat(@Valid @PathVariable seatId: Long):ResponseEntity<Void>{
+    fun patchUsingSeat(@Valid @PathVariable seatId: Long): ResponseEntity<Void> {
         seatService.patchUsingSeat(seatId)
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
     }
 
-    @PatchMapping
-    fun patchDisableUsingSeat(){}
+    @PatchMapping("cancel/{seatId}")
+    fun patchDisableUsingSeat(@Valid @PathVariable seatId: Long): ResponseEntity<Void> {
+        seatService.patchDisableUsingSeat(seatId)
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+    }
 }

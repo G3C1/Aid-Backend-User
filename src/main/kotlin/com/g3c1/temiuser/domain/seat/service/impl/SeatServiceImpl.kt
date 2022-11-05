@@ -19,14 +19,13 @@ class SeatServiceImpl(
     override fun findAllSeatInfo(): List<SeatInfoDto> = seatRepository.findAll()
         .map(seatConverter::toDto)
     @Transactional(rollbackFor = [Exception::class])
-    override fun patchUsingSeat(seatId: Long) {
-        seatRepository.findSeatById(seatId)
-            .orElseThrow { SeatNotFoundException()}
-            .let {seatValidator.checkIsUsed(it)}
-            .let { it.enabled = false }
-    }
+    override fun patchUsingSeat(seatId: Long) = seatRepository.findSeatById(seatId)
+        .orElseThrow { SeatNotFoundException()}
+        .let {seatValidator.checkIsUsed(it)}
+        .let { it.enabled = false }
 
-    override fun patchDisableUsingSeat(seatId: Long) {
-        TODO("Not yet implemented")
-    }
+    override fun patchDisableUsingSeat(seatId: Long) = seatRepository.findSeatById(seatId)
+        .orElseThrow { SeatNotFoundException()}
+        .let {seatValidator.checkIsUsed(it)}
+        .let { it.enabled = true }
 }
