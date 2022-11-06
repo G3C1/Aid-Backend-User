@@ -1,4 +1,4 @@
-package com.g3c1.temiuser.domain.food.entity
+package com.g3c1.temiuser.domain.food.domain.entity
 
 import com.g3c1.temiuser.domain.category.domain.entity.Category
 import com.g3c1.temiuser.global.entity.BaseIdEntity
