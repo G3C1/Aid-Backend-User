@@ -24,8 +24,9 @@ class SeatServiceImpl(
         .let {seatValidator.checkIsUsed(it)}
         .let { it.enabled = false }
 
+    @Transactional(rollbackFor = [Exception::class])
     override fun patchDisableUsingSeat(seatId: Long) = seatRepository.findSeatById(seatId)
         .orElseThrow { SeatNotFoundException()}
-        .let {seatValidator.checkIsUsed(it)}
+        .let {seatValidator.checkIsNotUsed(it)}
         .let { it.enabled = true }
 }
