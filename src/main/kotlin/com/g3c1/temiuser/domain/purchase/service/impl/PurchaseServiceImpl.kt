@@ -23,6 +23,6 @@ class PurchaseServiceImpl(
         seatUtils.findSeatById(purchasedFoodDto.seatId)
             .let { seatValidator.checkIsNotUsed(it) }
             .let { seat -> purchasedFoodDto.foodList.map { purchaseConverter.toEntity(seat,foodUtils.findFoodById(it.foodId),it.foodCount) }}
-            .let { purchaseRepository.saveAll(it) }
+            .let { println(it); purchaseRepository.saveAll(it) }
     }
 }

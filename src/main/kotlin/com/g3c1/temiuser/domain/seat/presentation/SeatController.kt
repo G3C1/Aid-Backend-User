@@ -3,6 +3,7 @@ package com.g3c1.temiuser.domain.seat.presentation
 import com.g3c1.temiuser.domain.seat.presentation.data.response.SeatInfoResponse
 import com.g3c1.temiuser.domain.seat.service.SeatService
 import com.g3c1.temiuser.domain.seat.utils.SeatConverter
+import org.jetbrains.annotations.NotNull
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -21,12 +22,12 @@ class SeatController(
             .let { ResponseEntity.ok().body(it) }
 
     @PatchMapping("/{seatId}")
-    fun patchUsingSeat(@Valid @PathVariable seatId: Long): ResponseEntity<Void> =
+    fun patchUsingSeat(@NotNull @PathVariable seatId: Long): ResponseEntity<Void> =
         seatService.patchUsingSeat(seatId)
             .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 
     @PatchMapping("/cancel/{seatId}")
-    fun patchDisableUsingSeat(@Valid @PathVariable seatId: Long): ResponseEntity<Void> =
+    fun patchDisableUsingSeat(@NotNull @PathVariable seatId: Long): ResponseEntity<Void> =
         seatService.patchDisableUsingSeat(seatId)
               .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build()}
 }
