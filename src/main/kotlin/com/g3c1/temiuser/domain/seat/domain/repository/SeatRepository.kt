@@ -6,5 +6,5 @@ import java.util.Optional
 
 interface SeatRepository: CrudRepository<Seat,Long> {
     override fun findAll(): List<Seat>
-    fun findSeatById(id: Long):Optional<Seat>
+    fun findSeatById(id: Long): Optional<Seat>
 }

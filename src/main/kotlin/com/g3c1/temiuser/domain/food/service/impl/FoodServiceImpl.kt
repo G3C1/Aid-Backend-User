@@ -7,12 +7,14 @@ import com.g3c1.temiuser.domain.food.presentation.data.dto.CategoryFoodListDto
 import com.g3c1.temiuser.domain.food.presentation.data.dto.FoodDto
 import com.g3c1.temiuser.domain.food.service.FoodService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FoodServiceImpl(
     private val foodRepository: FoodRepository,
     private val categoryUtils: CategoryUtils
 ): FoodService {
+    @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun findFoodListByCategory(): List<CategoryFoodListDto> = categoryUtils.findAllCategory().toList().map {category->
         CategoryFoodListDto(category.id,category.name,findFoodByCategory(category))
     }
