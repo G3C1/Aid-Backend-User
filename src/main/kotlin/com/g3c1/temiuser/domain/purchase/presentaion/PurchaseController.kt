@@ -4,13 +4,10 @@ import com.g3c1.temiuser.domain.purchase.presentaion.data.request.PurchasedFoodR
 import com.g3c1.temiuser.domain.purchase.presentaion.data.response.PurchasedFoodListResponse
 import com.g3c1.temiuser.domain.purchase.service.PurchaseService
 import com.g3c1.temiuser.domain.purchase.utils.PurchaseConverter
+import org.jetbrains.annotations.NotNull
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
@@ -29,4 +26,8 @@ class PurchaseController(
         purchaseService.findPurchasedList()
             .let { purchaseConverter.toResponse(it)}
             .let { ResponseEntity.ok().body(it) }
+    @DeleteMapping("{seatId}")
+    fun deletePurchase(@NotNull @PathVariable seatId: Long):ResponseEntity<Void> =
+        purchaseService.deletePurchase(seatId)
+            .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 }

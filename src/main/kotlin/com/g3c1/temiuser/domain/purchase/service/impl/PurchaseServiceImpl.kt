@@ -30,9 +30,11 @@ class PurchaseServiceImpl(
             .let { println(it); purchaseRepository.saveAll(it) }
     }
 
+    @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun findPurchasedList(): List<PurchasedFoodListDto> =
         getSeatIdList(purchaseRepository.findAll())
             .let { seat-> seat.map { PurchasedFoodListDto(it.id,it.seatNumber,getFoodInfo(it)) } }
+
     private fun getSeatIdList(purchases: List<Purchase>):List<Seat>{
         val seatList: ArrayList<Seat> = ArrayList()
         purchases.forEach(Consumer { purchase: Purchase ->
@@ -41,6 +43,11 @@ class PurchaseServiceImpl(
         })
         return seatList.distinct()
     }
+
     private fun getFoodInfo(seat: Seat): List<PurchasedFoodListDto.FoodInfo> =
         purchaseRepository.findPurchaseBySeat(seat).map { PurchasedFoodListDto.FoodInfo(it.food.name,it.foodCount) }
+    @Transactional(rollbackFor = [Exception::class])
+    override fun deletePurchase(seatId: Long) {
+        purchaseRepository.findPurchaseBySeat(seatUtils.findSeatById(seatId))
+    }
 }

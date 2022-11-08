@@ -6,4 +6,5 @@ import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.PurchasedFoodListD
 interface PurchaseService {
     fun createPurchasedFoodList(purchasedFoodDto: PurchasedFoodDto)
     fun findPurchasedList(): List<PurchasedFoodListDto>
+    fun deletePurchase(seatId: Long)
 }
