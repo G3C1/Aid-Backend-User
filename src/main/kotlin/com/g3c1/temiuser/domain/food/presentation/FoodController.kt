@@ -15,8 +15,8 @@ class FoodController(
     private val foodService: FoodService
 ) {
     @GetMapping
-    fun findFoodListByCategory(): ResponseEntity<List<CategoryFoodListResponse>> =
-        foodService.findFoodListByCategory()
+    fun findFoodList(): ResponseEntity<List<CategoryFoodListResponse>> =
+        foodService.findFoodList()
             .let {foodConverter.toResponse(it)}
             .let { ResponseEntity.ok().body(it) }
 }
