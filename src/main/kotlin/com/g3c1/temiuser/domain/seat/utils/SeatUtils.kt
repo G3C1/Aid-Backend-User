@@ -5,4 +5,5 @@ import com.g3c1.temiuser.domain.seat.domain.entity.Seat
 interface SeatUtils {
     fun findSeatById(seatId: Long): Seat
     fun findAll(): List<Seat>
+    fun findSeatByStoreId(store:Long): List<Seat>
 }

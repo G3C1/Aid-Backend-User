@@ -17,8 +17,9 @@ class SeatServiceImpl(
     private val seatValidator: SeatValidator
 ): SeatService {
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
-    override fun findAllSeatInfo(): List<SeatInfoDto> = seatUtils.findAll()
-        .map(seatConverter::toDto)
+    override fun findAllSeatInfo(): List<SeatInfoDto> =
+        seatUtils.findAll()
+            .map(seatConverter::toDto)
     @Transactional(rollbackFor = [Exception::class])
     override fun patchUsingSeat(seatId: Long) =
         seatUtils.findSeatById(seatId)

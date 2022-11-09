@@ -1,8 +1,10 @@
 package com.g3c1.temiuser.domain.store.domain.entity
 
+import com.g3c1.temiuser.domain.user.domain.entity.User
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.ManyToOne
 
 @Entity
 data class Store(
@@ -11,5 +13,7 @@ data class Store(
     val serialNumber:Long,
     val name: String,
     val description: String,
-    val img: String
+    val img: String,
+    @ManyToOne
+    val user: User
 )
