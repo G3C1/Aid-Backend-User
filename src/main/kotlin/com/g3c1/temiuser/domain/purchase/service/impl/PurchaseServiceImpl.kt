@@ -28,7 +28,7 @@ class PurchaseServiceImpl(
                         .let { seatValidator.checkIsNotUsed(it) }
 
         val purchaseList = purchasedFoodDto.foodList
-            .map { foodUtils.findFoodById(it.foodId) to it.foodCount }
+            .map { foodUtils.findFoodBySeatId(it.foodId) to it.foodCount }
             .map { (food,foodCount) -> purchaseConverter.toEntity(seat,food,foodCount) }
 
         purchaseRepository.saveAll(purchaseList)
