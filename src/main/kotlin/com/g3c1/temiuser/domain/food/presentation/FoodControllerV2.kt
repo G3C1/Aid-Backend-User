@@ -1,5 +1,6 @@
 package com.g3c1.temiuser.domain.food.presentation
 
+import com.g3c1.temiuser.domain.food.presentation.data.response.CategoryFoodListResponse
 import com.g3c1.temiuser.domain.food.service.FoodServiceV2
 import com.g3c1.temiuser.domain.food.utils.FoodConverter
 import org.jetbrains.annotations.NotNull
@@ -16,7 +17,7 @@ class FoodControllerV2(
     private val foodConverter: FoodConverter
 ) {
     @GetMapping("{serialNumber}")
-    fun findFoodByCategory(@NotNull @PathVariable serialNumber: Long) =
+    fun findFoodByCategory(@NotNull @PathVariable serialNumber: Long) :ResponseEntity<List<CategoryFoodListResponse>> =
         foodServiceV2.findFoodListBySerialNumber(serialNumber)
             .let {foodConverter.toResponse(it)}
             .let { ResponseEntity.ok().body(it) }

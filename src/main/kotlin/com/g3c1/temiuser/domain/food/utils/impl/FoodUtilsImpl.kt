@@ -17,7 +17,7 @@ class FoodUtilsImpl(
 
 
     override fun findFoodByCategory(category: Category): List<CategoryFoodListDto.FoodDto> =
-        foodRepository.findByCategory(category).toList()
+        foodRepository.findByCategory(category)
             .map { CategoryFoodListDto.FoodDto(it.id,it.name,it.img,it.description,it.servings,it.price) }
 
 }
