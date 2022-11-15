@@ -24,10 +24,14 @@ class PurchaseServiceImpl(
 ): PurchaseService {
     @Transactional(rollbackFor = [Exception::class])
     override fun createPurchasedFoodList(purchasedFoodDto: PurchasedFoodDto) {
-        seatUtils.findSeatById(purchasedFoodDto.seatId)
-            .let { seatValidator.checkIsNotUsed(it) }
-            .let { seat -> purchasedFoodDto.foodList.map { purchaseConverter.toEntity(seat,foodUtils.findFoodById(it.foodId),it.foodCount) }}
-            .let { println(it); purchaseRepository.saveAll(it) }
+        val seat:Seat = seatUtils.findSeatById(purchasedFoodDto.seatId)
+                        .let { seatValidator.checkIsNotUsed(it) }
+
+        val purchaseList = purchasedFoodDto.foodList
+            .map { foodUtils.findFoodById(it.foodId) to it.foodCount }
+            .map { (food,foodCount) -> purchaseConverter.toEntity(seat,food,foodCount) }
+        
+        purchaseRepository.saveAll(purchaseList)
     }
 
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
