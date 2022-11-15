@@ -15,5 +15,4 @@ class SeatServiceV2Impl(
         return seatUtils.findSeatByStoreId(storeId)
             .map(seatConverter::toDto)
     }
-
 }
