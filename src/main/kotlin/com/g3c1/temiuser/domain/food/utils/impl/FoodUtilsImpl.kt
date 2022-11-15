@@ -15,7 +15,6 @@ class FoodUtilsImpl(
     override fun findFoodBySeatId(seatId: Long): Food =
         foodRepository.findFoodById(seatId).orElseThrow { FoodNotFoundException() }
 
-
     override fun findFoodByCategory(category: Category): List<CategoryFoodListDto.FoodDto> =
         foodRepository.findByCategory(category)
             .map { CategoryFoodListDto.FoodDto(it.id,it.name,it.img,it.description,it.servings,it.price) }
