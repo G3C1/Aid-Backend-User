@@ -17,8 +17,7 @@ class FoodServiceV2Impl(
     override fun findFoodListBySerialNumber(serialNumber: Long): List<CategoryFoodListDto> =
         storeUtils.findStoreBySerialNumber(serialNumber)
             .let { categoryUtils.findAllCategoryByStore(it) }
-            .let { it.map {category->
-                CategoryFoodListDto(category.id,category.name,findFoodByCategory(category)) }}
+            .map { category-> CategoryFoodListDto(category.id,category.name,findFoodByCategory(category)) }
     private fun findFoodByCategory(category: Category):List<CategoryFoodListDto.FoodDto> =
         foodRepository.findByCategory(category).toList()
             .map { CategoryFoodListDto.FoodDto(it.id,it.name,it.img,it.description,it.servings,it.price) }

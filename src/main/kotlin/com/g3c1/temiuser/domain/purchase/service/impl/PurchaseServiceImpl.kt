@@ -30,7 +30,7 @@ class PurchaseServiceImpl(
         val purchaseList = purchasedFoodDto.foodList
             .map { foodUtils.findFoodById(it.foodId) to it.foodCount }
             .map { (food,foodCount) -> purchaseConverter.toEntity(seat,food,foodCount) }
-        
+
         purchaseRepository.saveAll(purchaseList)
     }
 
@@ -41,7 +41,8 @@ class PurchaseServiceImpl(
     private fun getSeatIdList(purchases: List<Purchase>):List<Seat> =
         purchases.map { it.seat }.distinct()
     private fun getFoodInfo(seat: Seat): List<PurchasedFoodListDto.FoodInfo> =
-        purchaseRepository.findPurchaseBySeat(seat).map { PurchasedFoodListDto.FoodInfo(it.food.name,it.foodCount) }
+        purchaseRepository.findPurchaseBySeat(seat)
+            .map { PurchasedFoodListDto.FoodInfo(it.food.name,it.foodCount) }
 
     @Transactional(rollbackFor = [Exception::class])
     override fun deletePurchase(seatId: Long) {
