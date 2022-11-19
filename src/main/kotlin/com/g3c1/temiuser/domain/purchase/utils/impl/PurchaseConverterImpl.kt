@@ -20,8 +20,8 @@ class PurchaseConverterImpl(
     override fun toResponse(purchasedFoodListDto: List<PurchasedFoodListDto>): List<PurchasedFoodListResponse> =
         purchasedFoodListDto.map { it ->
             PurchasedFoodListResponse(
-                it.seatId,
-                it.seatNumber,
-                it.foodInfoList.map { foodInfo-> PurchasedFoodListResponse.FoodInfo(foodInfo.foodName, foodInfo.foodCount) })
+                it.seat.id,
+                it.seat.seatNumber,
+                it.foodInfoList.map { foodInfo-> PurchasedFoodListResponse.FoodInfo(foodInfo.food.name, foodInfo.foodCount) })
         }
 }
