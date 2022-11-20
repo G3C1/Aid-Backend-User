@@ -4,11 +4,12 @@ import com.g3c1.temiuser.domain.food.domain.entity.Food
 import com.g3c1.temiuser.domain.seat.domain.entity.Seat
 
 
-data class PurchasedFoodListDto (
+data class PurchasedFoodListDto(
     val seat: Seat,
-    val foodInfoList: List<FoodInfo>
+    val foodInfoList: List<FoodInfoDto>,
+    val sequence: Int
 ){
-    data class FoodInfo(
+    data class FoodInfoDto(
         val food: Food,
         val foodCount: Long
     )
