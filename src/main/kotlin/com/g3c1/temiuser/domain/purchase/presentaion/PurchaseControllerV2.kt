@@ -1,6 +1,7 @@
 package com.g3c1.temiuser.domain.purchase.presentaion
 
 import com.g3c1.temiuser.domain.purchase.presentaion.data.response.MyPurchasedFoodListResponse
+import com.g3c1.temiuser.domain.purchase.presentaion.data.response.PurchasedFoodListResponse
 import com.g3c1.temiuser.domain.purchase.service.PurchaseServiceV2
 import com.g3c1.temiuser.domain.purchase.utils.PurchaseConverter
 import org.jetbrains.annotations.NotNull
@@ -19,6 +20,11 @@ class PurchaseControllerV2(
     @GetMapping("{seatId}")
     fun findPurchaseFoodListBySeatId(@NotNull @PathVariable seatId: Long):ResponseEntity<MyPurchasedFoodListResponse> =
         purchaseServiceV2.findFoodListBySeatId(seatId)
+            .let { purchaseConverter.toResponse(it) }
+            .let { ResponseEntity.ok(it) }
+    @GetMapping("/find/{serialNumber}")
+    fun findPurchasedList(@PathVariable serialNumber: Long): ResponseEntity<List<PurchasedFoodListResponse>> =
+        purchaseServiceV2.findPurchasedList(serialNumber)
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }
 }

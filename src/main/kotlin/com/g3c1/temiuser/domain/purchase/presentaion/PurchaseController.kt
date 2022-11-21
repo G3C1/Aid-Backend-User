@@ -25,7 +25,7 @@ class PurchaseController(
     fun findPurchasedList(): ResponseEntity<List<PurchasedFoodListResponse>> =
         purchaseService.findPurchasedList()
             .let { purchaseConverter.toResponse(it)}
-            .let { ResponseEntity.ok().body(it) }
+            .let { ResponseEntity.ok(it) }
     @DeleteMapping("{seatId}")
     fun deletePurchase(@NotNull @PathVariable seatId: Long):ResponseEntity<Void> =
         purchaseService.deletePurchase(seatId)
