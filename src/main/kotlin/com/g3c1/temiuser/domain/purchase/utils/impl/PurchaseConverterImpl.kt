@@ -26,7 +26,6 @@ class PurchaseConverterImpl(
         }
 
     override fun toResponse(dto: PurchasedFoodListDto): MyPurchasedFoodListResponse =
-        MyPurchasedFoodListResponse(dto.seat.id,
-            dto.foodInfoList.map { MyPurchasedFoodListResponse.FoodInfoResponse(it.food.name,it.food.img,it.food.price,it.food.servings,it.foodCount)},
+        MyPurchasedFoodListResponse(dto.foodInfoList.map { MyPurchasedFoodListResponse.FoodInfoResponse(it.food.name,it.food.img,it.food.price,it.food.servings,it.foodCount)},
             dto.sequence)
 }

@@ -1,7 +1,6 @@
 package com.g3c1.temiuser.domain.purchase.presentaion.data.response
 
 data class MyPurchasedFoodListResponse (
-    val seatId: Long,
     val foodInfoList: List<FoodInfoResponse>,
     val sequence: Int
 ){
