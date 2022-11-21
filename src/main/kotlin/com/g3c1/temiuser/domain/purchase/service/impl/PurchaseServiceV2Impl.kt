@@ -6,7 +6,6 @@ import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.PurchasedFoodListD
 import com.g3c1.temiuser.domain.purchase.service.PurchaseServiceV2
 import com.g3c1.temiuser.domain.seat.domain.entity.Seat
 import com.g3c1.temiuser.domain.seat.utils.SeatUtils
-import com.g3c1.temiuser.domain.store.utils.StoreUtils
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional
 class PurchaseServiceV2Impl(
     private val purchaseRepository: PurchaseRepository,
     private val seatUtils: SeatUtils,
-    private val storeUtils: StoreUtils
 ):PurchaseServiceV2 {
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
     override fun findFoodListBySeatId(seatId: Long): PurchasedFoodListDto =
@@ -23,12 +21,12 @@ class PurchaseServiceV2Impl(
     private fun getFoodInfo(seat: Seat): List<PurchasedFoodListDto.FoodInfoDto> =
         purchaseRepository.findPurchaseBySeat(seat)
             .map { PurchasedFoodListDto.FoodInfoDto(it.food,it.foodCount) }
-    private fun getSeatIdList(purchases: List<Purchase>):List<Seat> =
+    private fun getSeatList(purchases: List<Purchase>):List<Seat> =
         purchases.map { it.seat }.distinct()
     private fun findSequence(seat: Seat): Int =
-        getSeatIdList(purchaseRepository.findAll())
+        getSeatList(purchaseRepository.findAll())
             .let { it.indexOf(seat) }
     override fun findPurchasedList(serialNumber: Long): List<PurchasedFoodListDto> =
-        seatUtils.findSeatByStoreId(serialNumber)
-            .map { PurchasedFoodListDto(it,getFoodInfo(it),0) }
+        getSeatList(purchaseRepository.findAllBySerialNumber(serialNumber))
+                 .let { seat -> seat.map { PurchasedFoodListDto(it, getFoodInfo(it), 0) } }
 }
