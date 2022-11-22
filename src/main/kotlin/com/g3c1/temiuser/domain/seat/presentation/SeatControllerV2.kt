@@ -18,7 +18,7 @@ class SeatControllerV2(
 ) {
     @GetMapping("{serialNumber}")
     fun findSeatByStoreId(@NotNull @PathVariable serialNumber: Long): ResponseEntity<List<SeatInfoResponse>> =
-        seatServiceV2.findStoreByStoreId(serialNumber)
+        seatServiceV2.findSeatByStoreId(serialNumber)
             .let { seatConverter.toResponse(it) }
             .let { ResponseEntity.ok().body(it) }
 }

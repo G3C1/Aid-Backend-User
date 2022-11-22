@@ -11,7 +11,7 @@ class SeatServiceV2Impl(
     private val seatUtils: SeatUtils,
     private val seatConverter: SeatConverter
 ):SeatServiceV2 {
-    override fun findStoreByStoreId(storeId: Long): List<SeatInfoDto> =
+    override fun findSeatByStoreId(storeId: Long): List<SeatInfoDto> =
         seatUtils.findSeatByStoreId(storeId)
             .map(seatConverter::toDto)
 }
