@@ -6,8 +6,8 @@ data class PurchasedFoodListResponse(
     val foodInfoList: List<FoodInfoResponse>
 ){
     data class FoodInfoResponse(
-        val foodImg: String,
         val foodName: String,
+        val foodImg: String,
         val price: Long,
         val foodCount: Long
     )
