@@ -16,7 +16,7 @@ class SeatUtilsImpl(
         seatRepository.findSeatById(seatId).orElseThrow { SeatNotFoundException() }
 
     override fun findAll(): List<Seat> = seatRepository.findAll()
-    override fun findSeatByStoreId(storeId: Long): List<Seat> =
-        storeUtils.findStoreBySerialNumber(storeId)
+    override fun findSeatByStoreId(store: Long): List<Seat> =
+        storeUtils.findStoreBySerialNumber(store)
             .let { seatRepository.findAllByStore(it) }
 }
