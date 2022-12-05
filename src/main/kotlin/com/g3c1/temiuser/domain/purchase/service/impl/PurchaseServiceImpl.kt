@@ -45,6 +45,6 @@ class PurchaseServiceImpl(
 
     @Transactional(rollbackFor = [Exception::class])
     override fun deletePurchase(seatId: Long) {
-        purchaseRepository.findPurchaseBySeat(seatUtils.findSeatById(seatId))
+        purchaseRepository.deleteBySeat(seatUtils.findSeatById(seatId))
     }
 }
