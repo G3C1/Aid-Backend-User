@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class SeatConverterImpl: SeatConverter {
-    override fun toDto(seat: Seat): SeatInfoDto = SeatInfoDto(seat.id, seat.seatNumber, seat.severalPeople, seat.enabled)
+    override fun toDto(seat: Seat): SeatInfoDto = SeatInfoDto(seat.id, seat.seatNumber, seat.severalPeople, seat.locationX, seat.locationY, seat.enabled)
     override fun toResponse(it: List<SeatInfoDto>): List<SeatInfoResponse> = it.toList().map { SeatInfoResponse(it.idx, it.seatNumber, it.severalPeople, it.enabled) }
 }
