@@ -17,7 +17,7 @@ class PurchaseController(
     private val purchaseService: PurchaseService
 ) {
     @PostMapping
-    fun createPurchasedFoodList(@RequestBody @Valid purchasedFoodRequest: PurchasedFoodRequest): ResponseEntity<Void> =
+    fun createPurchasedFoodList(@Valid @RequestBody purchasedFoodRequest: PurchasedFoodRequest): ResponseEntity<Void> =
         purchaseConverter.toDto(purchasedFoodRequest)
             .let {purchaseService.createPurchasedFoodList(it)}
             .let { ResponseEntity.status(HttpStatus.CREATED).build() }
