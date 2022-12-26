@@ -26,8 +26,8 @@ class PurchaseController(
         purchaseService.findPurchasedList()
             .let { purchaseConverter.toResponse(it)}
             .let { ResponseEntity.ok(it) }
-    @DeleteMapping("{seatId}")
-    fun deletePurchase(@NotNull @PathVariable seatId: Long):ResponseEntity<Void> =
+    @DeleteMapping("{seat_id}")
+    fun deletePurchase(@NotNull @PathVariable("seat_id") seatId: Long):ResponseEntity<Void> =
         purchaseService.deletePurchase(seatId)
             .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 }

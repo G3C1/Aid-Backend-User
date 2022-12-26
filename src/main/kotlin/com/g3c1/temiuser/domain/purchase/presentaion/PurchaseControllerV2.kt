@@ -17,13 +17,13 @@ class PurchaseControllerV2(
     private val purchaseServiceV2: PurchaseServiceV2,
     private val purchaseConverter: PurchaseConverter
 ) {
-    @GetMapping("{seatId}")
-    fun findPurchaseFoodListBySeatId(@NotNull @PathVariable seatId: Long):ResponseEntity<MyPurchasedFoodListResponse> =
+    @GetMapping("{seat_id}")
+    fun findPurchaseFoodListBySeatId(@NotNull @PathVariable("seat_id") seatId: Long):ResponseEntity<MyPurchasedFoodListResponse> =
         purchaseServiceV2.findFoodListBySeatId(seatId)
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }
-    @GetMapping("/find/{serialNumber}")
-    fun findPurchasedList(@PathVariable serialNumber: Long): ResponseEntity<List<PurchasedFoodListResponse>> =
+    @GetMapping("/find/{serial_number}")
+    fun findPurchasedList(@NotNull @PathVariable("serial_number") serialNumber: Long): ResponseEntity<List<PurchasedFoodListResponse>> =
         purchaseServiceV2.findPurchasedList(serialNumber)
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }

@@ -16,8 +16,8 @@ class StoreController(
     private val storeService: StoreService,
     private val storeConverter: StoreConverter
 ) {
-    @GetMapping("{serialNumber}")
-    fun findStoreBySerialNumber(@NotNull @PathVariable serialNumber: Long): ResponseEntity<StoreInfoResponse> =
+    @GetMapping("{serial_number}")
+    fun findStoreBySerialNumber(@NotNull @PathVariable("serial_number") serialNumber: Long): ResponseEntity<StoreInfoResponse> =
         storeService.findStoreBySerialNumber(serialNumber)
             .let { storeConverter.toResponse(it) }
             .let { ResponseEntity.ok().body(it) }

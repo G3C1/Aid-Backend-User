@@ -20,13 +20,13 @@ class SeatController(
             .let { seatConverter.toResponse(it) }
             .let { ResponseEntity.ok().body(it) }
 
-    @PatchMapping("/{seatId}")
-    fun patchUsingSeat(@NotNull @PathVariable seatId: Long): ResponseEntity<Void> =
+    @PatchMapping("/{seat_id}")
+    fun patchUsingSeat(@NotNull @PathVariable("seat_id") seatId: Long): ResponseEntity<Void> =
         seatService.patchUsingSeat(seatId)
             .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 
-    @PatchMapping("/cancel/{seatId}")
-    fun patchDisableUsingSeat(@NotNull @PathVariable seatId: Long): ResponseEntity<Void> =
+    @PatchMapping("/cancel/{seat_id}")
+    fun patchDisableUsingSeat(@NotNull @PathVariable("seat_id") seatId: Long): ResponseEntity<Void> =
         seatService.patchDisableUsingSeat(seatId)
               .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build()}
 }

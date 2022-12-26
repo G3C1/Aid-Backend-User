@@ -16,8 +16,8 @@ class FoodControllerV2(
     private val foodServiceV2: FoodServiceV2,
     private val foodConverter: FoodConverter
 ) {
-    @GetMapping("{serialNumber}")
-    fun findFoodByCategory(@NotNull @PathVariable serialNumber: Long) :ResponseEntity<List<CategoryFoodListResponse>> =
+    @GetMapping("{serial_number}")
+    fun findFoodByCategory(@NotNull @PathVariable("serial_number") serialNumber: Long) :ResponseEntity<List<CategoryFoodListResponse>> =
         foodServiceV2.findFoodListBySerialNumber(serialNumber)
             .let {foodConverter.toResponse(it)}
             .let { ResponseEntity.ok().body(it) }
