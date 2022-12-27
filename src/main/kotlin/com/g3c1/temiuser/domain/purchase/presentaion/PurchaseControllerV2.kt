@@ -1,5 +1,6 @@
 package com.g3c1.temiuser.domain.purchase.presentaion
 
+import com.g3c1.temiuser.domain.purchase.presentaion.data.request.FindPurchasedFoodRequest
 import com.g3c1.temiuser.domain.purchase.presentaion.data.response.MyPurchasedFoodListResponse
 import com.g3c1.temiuser.domain.purchase.presentaion.data.response.PurchasedFoodListResponse
 import com.g3c1.temiuser.domain.purchase.service.PurchaseServiceV2
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -17,9 +19,9 @@ class PurchaseControllerV2(
     private val purchaseServiceV2: PurchaseServiceV2,
     private val purchaseConverter: PurchaseConverter
 ) {
-    @GetMapping("{seat_id}")
-    fun findPurchaseFoodListBySeatId(@NotNull @PathVariable("seat_id") seatId: Long):ResponseEntity<MyPurchasedFoodListResponse> =
-        purchaseServiceV2.findFoodListBySeatId(seatId)
+    @GetMapping()
+    fun findPurchaseFoodListBySeatId(@RequestParam param: FindPurchasedFoodRequest):ResponseEntity<MyPurchasedFoodListResponse> =
+        purchaseServiceV2.findFoodListBySeatId(param)
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }
     @GetMapping("/find/{serial_number}")

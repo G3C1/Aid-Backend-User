@@ -5,5 +5,6 @@ enum class ErrorCode(val message:String,val status: Int) {
     FOOD_NOT_FOUND("음식을 찾을 수 없습니다.",404),
     SEAT_NOT_FOUND("좌석을 찾을 수 없습니다.",404),
     STORE_NOT_FOUND("가게를 찾을 수 없습니다.",404),
+    PURCHASE_NOT_FOUND("주문을 찾을 수 없스니다.",404),
     ALREADY_USED_SEAT("이미 사용중인 좌석입니다.",409)
 }

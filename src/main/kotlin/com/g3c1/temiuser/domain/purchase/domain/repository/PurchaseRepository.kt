@@ -13,5 +13,6 @@ interface PurchaseRepository: CrudRepository<Purchase,Long> {
             "where s.store.serialNumber = :serial_number order by p.createdAt DESC")
     fun findAllBySerialNumber(@Param("serial_number")serialNumber: Long):List<Purchase>
     fun findPurchaseBySeat(seat: Seat): List<Purchase>
+    fun findPurchaseByStoreId(storeId: Long): List<Purchase>
     fun deleteBySeat(seat: Seat)
 }
