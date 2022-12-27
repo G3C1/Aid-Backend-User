@@ -19,7 +19,7 @@ class PurchaseConverterImpl(
     override fun toDto(purchasedFoodRequest: PurchasedFoodRequest): OrderedFoodDto =
         OrderedFoodDto(purchasedFoodRequest.seatId,purchasedFoodRequest.foodList.map { OrderedFoodDto.OrderedFoodInfoDto(it.foodId,it.foodCount) })
     override fun toDto(request: FindPurchasedFoodRequest): FindPurchasedFoodDto = FindPurchasedFoodDto(request.seatId,request.serialNumber)
-    override fun toEntity(seat: Seat, food: Food, foodCount: Long): Purchase = Purchase(food,seat,foodCount)
+    override fun toEntity(seat: Seat, food: Food, foodCount: Long, serialNumber: Long): Purchase = Purchase(food,seat,foodCount,serialNumber)
     override fun toResponse(dto: List<PurchasedFoodListDto>): List<PurchasedFoodListResponse> =
         dto.map { PurchasedFoodListResponse(
                 it.seat.id,

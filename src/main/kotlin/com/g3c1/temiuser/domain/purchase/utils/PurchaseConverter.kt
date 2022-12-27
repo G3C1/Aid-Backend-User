@@ -14,7 +14,7 @@ import com.g3c1.temiuser.domain.seat.domain.entity.Seat
 interface PurchaseConverter {
     fun toDto(purchasedFoodRequest: PurchasedFoodRequest): OrderedFoodDto
     fun toDto(request: FindPurchasedFoodRequest): FindPurchasedFoodDto
-    fun toEntity(seat: Seat, food:Food,foodCount: Long ): Purchase
+    fun toEntity(seat: Seat, food:Food,foodCount: Long, serialNumber: Long): Purchase
     fun toResponse(dto:List<PurchasedFoodListDto>): List<PurchasedFoodListResponse>
     fun toResponse(dto:PurchasedFoodListDto): MyPurchasedFoodListResponse
 }

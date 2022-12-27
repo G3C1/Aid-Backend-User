@@ -16,10 +16,12 @@ class PurchaseController(
     private val purchaseConverter: PurchaseConverter,
     private val purchaseService: PurchaseService
 ) {
-    @PostMapping
-    fun createPurchasedFoodList(@Valid @RequestBody purchasedFoodRequest: PurchasedFoodRequest): ResponseEntity<Void> =
+    @PostMapping("{serial_number}")
+    fun createPurchasedFoodList(@Valid @RequestBody purchasedFoodRequest: PurchasedFoodRequest,
+                                @NotNull @PathVariable("serial_number") serialNumber: Long
+    ): ResponseEntity<Void> =
         purchaseConverter.toDto(purchasedFoodRequest)
-            .let {purchaseService.createPurchasedFoodList(it)}
+            .let {purchaseService.createPurchasedFoodList(it,serialNumber)}
             .let { ResponseEntity.status(HttpStatus.CREATED).build() }
     @GetMapping
     fun findPurchasedList(): ResponseEntity<List<PurchasedFoodListResponse>> =
