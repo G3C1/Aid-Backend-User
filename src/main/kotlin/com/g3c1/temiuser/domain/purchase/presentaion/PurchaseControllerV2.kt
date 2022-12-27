@@ -21,7 +21,8 @@ class PurchaseControllerV2(
 ) {
     @GetMapping()
     fun findPurchaseFoodListBySeatId(@RequestParam param: FindPurchasedFoodRequest):ResponseEntity<MyPurchasedFoodListResponse> =
-        purchaseServiceV2.findFoodListBySeatId(param)
+        purchaseConverter.toDto(param)
+            .let{purchaseServiceV2.findFoodListBySeatId(it)}
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }
     @GetMapping("/find/{serial_number}")
