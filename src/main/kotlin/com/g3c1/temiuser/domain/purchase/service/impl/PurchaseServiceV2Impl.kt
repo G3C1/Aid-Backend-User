@@ -1,6 +1,5 @@
 package com.g3c1.temiuser.domain.purchase.service.impl
 
-import com.g3c1.temiuser.domain.food.exception.FoodNotFoundException
 import com.g3c1.temiuser.domain.purchase.domain.entity.Purchase
 import com.g3c1.temiuser.domain.purchase.domain.repository.PurchaseRepository
 import com.g3c1.temiuser.domain.purchase.exception.PurchaseNotFoundException
@@ -8,7 +7,6 @@ import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.FindPurchasedFoodD
 import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.PurchasedFoodListDto
 import com.g3c1.temiuser.domain.purchase.service.PurchaseServiceV2
 import com.g3c1.temiuser.domain.seat.domain.entity.Seat
-import com.g3c1.temiuser.domain.seat.exception.SeatNotFoundException
 import com.g3c1.temiuser.domain.seat.utils.SeatUtils
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
