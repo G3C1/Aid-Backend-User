@@ -4,6 +4,8 @@ import org.jetbrains.annotations.NotNull
 
 data class PurchasedFoodRequest(
     @field: NotNull
+    val serialNumber: Long,
+    @field: NotNull
     val seatId: Long,
     @field: NotNull
     val foodList: List<OrderedFoodInfoRequest>

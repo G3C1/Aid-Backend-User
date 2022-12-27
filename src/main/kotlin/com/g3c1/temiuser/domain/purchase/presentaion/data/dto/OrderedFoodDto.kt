@@ -1,6 +1,7 @@
 package com.g3c1.temiuser.domain.purchase.presentaion.data.dto
 
 data class OrderedFoodDto (
+    val serialNumber: Long,
     val seatId: Long,
     val foodList: List<OrderedFoodInfoDto>
 ){

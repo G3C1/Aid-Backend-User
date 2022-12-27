@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component
 class PurchaseConverterImpl(
 ): PurchaseConverter {
     override fun toDto(purchasedFoodRequest: PurchasedFoodRequest): OrderedFoodDto =
-        OrderedFoodDto(purchasedFoodRequest.seatId,purchasedFoodRequest.foodList.map { OrderedFoodDto.OrderedFoodInfoDto(it.foodId,it.foodCount) })
+        OrderedFoodDto(purchasedFoodRequest.serialNumber ,purchasedFoodRequest.seatId,purchasedFoodRequest.foodList.map { OrderedFoodDto.OrderedFoodInfoDto(it.foodId,it.foodCount) })
     override fun toDto(request: FindPurchasedFoodRequest): FindPurchasedFoodDto = FindPurchasedFoodDto(request.seatId,request.serialNumber)
     override fun toEntity(seat: Seat, food: Food, foodCount: Long, serialNumber: Long): Purchase = Purchase(food,seat,foodCount,serialNumber)
     override fun toResponse(dto: List<PurchasedFoodListDto>): List<PurchasedFoodListResponse> =

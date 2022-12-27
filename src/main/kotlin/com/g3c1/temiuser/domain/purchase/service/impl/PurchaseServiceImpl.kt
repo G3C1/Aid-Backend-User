@@ -22,13 +22,13 @@ class PurchaseServiceImpl(
     private val purchaseConverter: PurchaseConverter
 ): PurchaseService {
     @Transactional(rollbackFor = [Exception::class])
-    override fun createPurchasedFoodList(orderedFoodDto: OrderedFoodDto, serialNumber: Long) {
+    override fun createPurchasedFoodList(orderedFoodDto: OrderedFoodDto) {
         val seat:Seat = seatUtils.findSeatById(orderedFoodDto.seatId)
                         .let { seatValidator.checkIsNotUsed(it) }
 
         val purchaseList = orderedFoodDto.foodList
             .map { foodUtils.findFoodBySeatId(it.foodId) to it.foodCount }
-            .map { (food,foodCount) -> purchaseConverter.toEntity(seat,food,foodCount,serialNumber) }
+            .map { (food,foodCount) -> purchaseConverter.toEntity(seat,food,foodCount,orderedFoodDto.serialNumber) }
 
         purchaseRepository.saveAll(purchaseList)
     }
