@@ -19,5 +19,6 @@ class Purchase(
    @OnDelete(action = OnDeleteAction.CASCADE)
    @JoinColumn(nullable = true)
    val seat: Seat,
-   val foodCount: Long
+   val foodCount: Long,
+   val storeId: Long
 ):BaseTimeIdEntity()
