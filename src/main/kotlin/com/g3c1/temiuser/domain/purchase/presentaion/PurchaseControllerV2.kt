@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -21,8 +20,8 @@ class PurchaseControllerV2(
     private val purchaseConverter: PurchaseConverter
 ) {
     @GetMapping
-    fun findPurchaseFoodListBySeatId(@RequestParam("seatId")seatId: Long,@RequestParam("serialNumber")serialNumber: Long):ResponseEntity<MyPurchasedFoodListResponse> =
-        purchaseConverter.toDto(FindPurchasedFoodRequest(seatId,serialNumber))
+    fun findPurchaseFoodListBySeatId(@RequestParam("seatId")seatId: String,@RequestParam("serialNumber")serialNumber: String):ResponseEntity<MyPurchasedFoodListResponse> =
+        purchaseConverter.toDto(FindPurchasedFoodRequest(seatId.toLong(),serialNumber.toLong()))
             .let{purchaseServiceV2.findFoodListBySeatId(it)}
             .let { purchaseConverter.toResponse(it) }
             .let { ResponseEntity.ok(it) }
