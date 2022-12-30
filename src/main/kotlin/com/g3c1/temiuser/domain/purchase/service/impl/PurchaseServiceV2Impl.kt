@@ -17,9 +17,9 @@ class PurchaseServiceV2Impl(
     private val seatUtils: SeatUtils,
 ):PurchaseServiceV2 {
     @Transactional(readOnly = true, rollbackFor = [Exception::class])
-    override fun findFoodListBySeatId(param: FindPurchasedFoodDto): PurchasedFoodListDto =
-        seatUtils.findSeatById(param.seatId)
-            .let { PurchasedFoodListDto(it,getFoodInfo(it),findSequence(it,param.serialNumber)) }
+    override fun findFoodListBySeatId(dto: FindPurchasedFoodDto): PurchasedFoodListDto =
+        seatUtils.findSeatById(dto.seatId)
+            .let { PurchasedFoodListDto(it,getFoodInfo(it),findSequence(it,dto.serialNumber)) }
     private fun getFoodInfo(seat: Seat): List<PurchasedFoodListDto.FoodInfoDto> =
         purchaseRepository.findPurchaseBySeat(seat)
             .map { PurchasedFoodListDto.FoodInfoDto(it.food,it.foodCount) }

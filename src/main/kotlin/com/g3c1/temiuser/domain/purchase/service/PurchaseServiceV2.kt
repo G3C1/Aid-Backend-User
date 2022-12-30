@@ -4,6 +4,6 @@ import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.FindPurchasedFoodD
 import com.g3c1.temiuser.domain.purchase.presentaion.data.dto.PurchasedFoodListDto
 
 interface PurchaseServiceV2 {
-    fun findFoodListBySeatId(param: FindPurchasedFoodDto): PurchasedFoodListDto
+    fun findFoodListBySeatId(dto: FindPurchasedFoodDto): PurchasedFoodListDto
     fun findPurchasedList(serialNumber:Long): List<PurchasedFoodListDto>
 }
