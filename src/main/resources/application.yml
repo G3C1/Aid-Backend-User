@@ -9,3 +9,5 @@ spring:
       ddl-auto: update
       generate-ddl: true
     database-platform: org.hibernate.dialect.MariaDB103Dialect
+server:
+  port: 3000
